@@ -1,4 +1,21 @@
 package model;
 
-public class Lavaplatos {
+public class Lavaplatos extends Thread {
+
+    private Mesa mesa;
+    private Fregadero fregadero;
+
+    public Lavaplatos(Mesa refMesa, Fregadero refFreg) {
+        mesa = refMesa;
+        fregadero = refFreg;
+    }
+
+    @Override
+    public void run() {
+        while(true) {
+            fregadero.recogerCubiertos();
+            fregadero.lavar();
+            mesa.dejarCubiertos();
+        }
+    }
 }
