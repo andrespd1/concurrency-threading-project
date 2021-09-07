@@ -76,13 +76,10 @@ public class Mesa {
 	}
 
 	//El lavaplatos deja cubiertos nuevos en la mesa. Puede dejar cualquier cubierto.
-	public synchronized void dejarCubiertos(int tipoCubierto)
+	public synchronized void dejarCubiertos()
 	{
-		if(tipoCubierto == 1) {
-			numCubiertosT1++;
-		} else {
-			numCubiertosT2++;
-		}
+		numCubiertosT1++;
+		numCubiertosT2++;
 		notify();
 	}
 

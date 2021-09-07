@@ -13,9 +13,9 @@ public class Lavaplatos extends Thread {
     @Override
     public void run() {
         while(true) {
-            int tipoCubierto = fregadero.recogerCubiertos();
+            fregadero.recogerCubiertos();
             fregadero.lavar();
-            mesa.dejarCubiertos(tipoCubierto);
+            mesa.dejarCubiertos();
         }
     }
 }

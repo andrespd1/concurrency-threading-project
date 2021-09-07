@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class Fregadero {
 
     private int tamFregadero;
-    private ArrayList cubiertos;
+    private int paresCubiertos;
 
     private Fregadero (int tamanio) {
         tamFregadero = tamanio;
-        cubiertos = new ArrayList();
+        paresCubiertos = 0;
     }
 
     //El lavaplatos lava los cubiertos.
@@ -30,28 +30,19 @@ public class Fregadero {
     }
 
     //El lavaplatos recoge cubiertos del fregadero para lavarlos.
-    public synchronized Integer recogerCubiertos() {
-
-        while(cubiertos.size() == 0)
+    public synchronized void recogerCubiertos() {
+        while(paresCubiertos == 0)
             Thread.yield();
-
-        Integer i = (Integer) cubiertos.remove(0);
-
-        return i;
+        paresCubiertos--;
     }
 
     //El comensal deja los cubiertos sucios en el fregadero.
     public synchronized void dejarCubiertos() {
 
-        while(cubiertos.size() == tamFregadero)
+        while(paresCubiertos == tamFregadero)
             Thread.yield();
 
-        cubiertos.add(1);
-
-        while(cubiertos.size() == tamFregadero)
-            Thread.yield();
-
-        cubiertos.add(2);
+        paresCubiertos++;
     }
 
 }
