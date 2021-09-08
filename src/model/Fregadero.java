@@ -7,14 +7,13 @@ public class Fregadero {
     private int tamFregadero;
     private int paresCubiertos;
 
-    private Fregadero (int tamanio) {
+    public Fregadero (int tamanio) {
         tamFregadero = tamanio;
         paresCubiertos = 0;
     }
 
     //El lavaplatos lava los cubiertos.
     public void lavar() {
-
         try {
             //sleep random
             int tiempo = (int) (Math.random() * 100) % 2;
@@ -26,23 +25,32 @@ public class Fregadero {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     //El lavaplatos recoge cubiertos del fregadero para lavarlos.
-    public synchronized void recogerCubiertos() {
+    public void recogerCubiertos() {
         while(paresCubiertos == 0)
             Thread.yield();
         paresCubiertos--;
     }
 
     //El comensal deja los cubiertos sucios en el fregadero.
-    public synchronized void dejarCubiertos() {
-
+    public void dejarCubiertos() {
+    	System.out.println("[LOG FREGADERO] Pares de cubiertos en fregadero: "+paresCubiertos);
         while(paresCubiertos == tamFregadero)
             Thread.yield();
 
         paresCubiertos++;
     }
+
+	public int getTamFregadero() {
+		return tamFregadero;
+	}
+
+	public int getParesCubiertos() {
+		return paresCubiertos;
+	}
+    
+    
 
 }
