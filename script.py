@@ -6,6 +6,7 @@ def execute():
     bashCmd = '''
                 cd ..
                 cd /Users/andres/Documents/Uniandes/infracomp/infracomp-caso1
+                git remote update
                 var="$(git status -uno)"
                 if [[ $var =~ "nothing to commit" ]]; then
                     echo "Up-to-date"
